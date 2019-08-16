@@ -1,5 +1,5 @@
-#ifndef VISION_HPP
-#define VISION_HPP
+#ifndef TAPE_HPP
+#define TAPE_HPP
 
 #include <opencv2/core/core.hpp>
 #include <opencv2/imgproc/imgproc.hpp>
@@ -27,15 +27,12 @@ const int MIN_BLUE = 234, MAX_BLUE = 255;
 const int MIN_HUE = 0, MAX_HUE = 94;
 const int MIN_SAT = 0, MAX_SAT = 38;
 const int MIN_VAL = 233, MAX_VAL = 255;
-
-
-
-
+const int MIN_LUM = 233, MAX_LUM = 255;
 
 const double
-MIN_AREA = 0.000000000000000000000000001, MAX_AREA = 1000000,
-MIN_WIDTH = 0, MAX_WIDTH = 100000, //rectangle width
-IN_HEIGHT = 0, MAX_HEIGHT = 100000, //rectangle height
+MIN_AREA = 0.1, MAX_AREA = 100000,
+MIN_WIDTH = 0, MAX_WIDTH = 100, //rectangle width
+IN_HEIGHT = 0, MAX_HEIGHT = 150, //rectangle height
 MIN_RECT_RAT = 1.5, MAX_RECT_RAT = 8, //rect height / rect width
 MIN_AREA_RAT = 0.85, MAX_AREA_RAT = 100; //cvxhull area / contour area
 
@@ -66,22 +63,21 @@ const cv::Scalar MY_WHITE (255,255,255);
 /**
  *  RGB Threshold Levels
  */
-const int RGB_RED[2] = {229, 255};
-const int RGB_GREEN[2] = {240, 255};
-const int RGB_BLUE[2] = {234, 255};
-// // // /**
-
-// // //  *  HSV Threshold Levels
-// // //  // // //  */
-const int HSV_HUE[2] = {0, 94};
-const int HSV_SAT[2] = {0, 38};
-const int HSV_VAL[2] = {233, 255};
-// // // /**
-// // //  *  HSL Threshold Levels
-// // //  */
-// // // const int HSL_HUE[2] =   {150,255};
-// // // const int HSL_SAT[`2] = {93,255};
-const int HSL_LUM[2] =  {0,255};
+const int RGB_RED[2] = {MIN_RED, MAX_RED};
+const int RGB_GREEN[2] = {MIN_GREEN, MAX_GREEN};
+const int RGB_BLUE[2] = {MIN_BLUE, MAX_BLUE};
+/**
+ *  HSV Threshold Levels
+ */
+const int HSV_HUE[2] = {MIN_HUE, MAX_HUE};
+const int HSV_SAT[2] = {MIN_SAT, MAX_SAT};
+const int HSV_VAL[2] = {MIN_VAL, MAX_VAL};
+/**
+ *  HSL Threshold Levels
+ */
+const int HSL_HUE[2] = {MIN_HUE, MAX_HUE};
+const int HSL_SAT[`2] = {MIN_SAT, MAX_SAT};
+const int HSL_LUM[2] =  {MIN_LUM, MAX_LUM};
 
 const int MEDIAN_BLUR_LEVEL = 5;  // must be ODD!
 
