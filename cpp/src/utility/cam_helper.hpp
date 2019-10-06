@@ -23,7 +23,7 @@ struct CameraSettings {
 
     //contrast: should be relatively high for higher contrast between light and 
     //dark parts of the image
-    int contrast = 10; 
+    int contrast = 100; 
 
     //saturation: should be relatively high so the colored reflective tape has 
     //a full and consistent color
@@ -39,17 +39,17 @@ struct CameraSettings {
     int power_line_frequency = 2;
 
     //sharpness: does not matter much
-    int sharpness = 25;
+    int sharpness = 100;
 
     //backlight compensation: off
     int backlight_compensation = 0;
     
     //exposure auto: menu item, should be set to off
-    int exposure_auto = 1;
+    int exposure_auto = 0;
 
     //exposure absolute, should be as low as possible for minimal motion blur
     //and most consistent colors
-    int exposure_absolute = 5;
+    int exposure_absolute = 1;
 };
 
 inline bool operator== (const CameraSettings &s1,const CameraSettings &s2) {

@@ -54,6 +54,13 @@ string ip = "10.26.1.5"; //destination ip
 string tableName = "CVResultsTable";
 bool verbose = true;
 
+void flash_good_settings() {
+   char setting_script[100];
+   sprintf (setting_script, "bash good_settings.sh %d", device);
+   system (setting_script);
+
+}
+
 int main()
 {
   //initialize NetworkTables
@@ -93,10 +100,11 @@ int main()
   string write_pipeline = create_write_pipeline(width, height, framerate,
                                                 bitrate, ip, port_thresh);
   string write_driver_pipeline = create_write_pipeline(driver_width, driver_height, driver_framerate, bitrate, ip,
-                                                       port_driver_thresh);
+                                                       port_driver_stream);
   if (verbose)
   {
     printf("GStreamer write pipeline: %s\n", write_pipeline.c_str());
+    printf("GStreamer driver write pipeline: %s\n", write_driver_pipeline.c_str());
   }
   mywriter.open(write_pipeline.c_str(),
                 0, framerate, cv::Size(width, height), true);
@@ -140,6 +148,8 @@ int main()
       if (verbose)
       {
         printf("Out image stats: (depth %d), (nchannels %d)\n",
+               outImage.depth, outImage.nChannels);
+        printf("Out image driver stats: (depth %d), (nchannels %d)\n",
                outImage_driver.depth, outImage_driver.nChannels);
       }
       mywriter.writeFrame(&outImage); //write output image over network
@@ -147,7 +157,7 @@ int main()
     }
 
     //delay for 10 millisecondss
-    usleep(10);
+    //usleep(0);
   }
   mywriter.close();
   mywriter_driver.close();
